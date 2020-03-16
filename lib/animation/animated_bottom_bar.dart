@@ -1,5 +1,5 @@
+import 'package:fancy_bar/fancy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_bottombar/animated_bottombar.dart';
 
 class AnimatedBottomBar extends StatefulWidget {
   static String tag = 'animatedBottomBar';
@@ -32,112 +32,32 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> {
         // the App.build method, and use it to set our appbar title.
         title: Text('ANIMATER BOTTOMBAR'),
       ),
-      bottomNavigationBar: BottomAppBar(
-//        shape: CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            InkWell(
-              onTap: () => setItem(0),
-              child: Container(
-                  width: 100,
-                  height: 55,
-                  alignment: Alignment.center,
-                  child: AnimatedSwitcher(
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) {
-                      return ScaleTransition(
-                        scale: animation,
-                        child: child,
-                      );
-                    },
-                    duration: Duration(milliseconds: 250),
-                    child: pos == 0
-                        ? Text(
-                            'Home',
-                            style: TextStyle(
-                                color: Colors.deepPurple,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          )
-                        : Icon(Icons.home),
-                  )),
-            ),
-            InkWell(
-              onTap: () => setItem(1),
-              child: Container(
-                  width: 100,
-                  height: 55,
-                  alignment: Alignment.center,
-                  child: AnimatedSwitcher(
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) {
-                      return ScaleTransition(
-                        scale: animation,
-                        child: child,
-                      );
-                    },
-                    duration: Duration(milliseconds: 250),
-                    child: pos == 1
-                        ? Text('Trending',
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18))
-                        : Icon(Icons.trending_up),
-                  )),
-            ),
-            InkWell(
-              onTap: () => setItem(2),
-              child: Container(
-                width: 100,
-                height: 55,
-                alignment: Alignment.center,
-                child: AnimatedSwitcher(
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
-                    return ScaleTransition(
-                      scale: animation,
-                      child: child,
-                    );
-                  },
-                  duration: Duration(milliseconds: 250),
-                  child: pos == 2
-                      ? Text('Search',
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18))
-                      : Icon(Icons.search),
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () => setItem(3),
-              child: Container(
-                  width: 100,
-                  height: 55,
-                  alignment: Alignment.center,
-                  child: AnimatedSwitcher(
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) {
-                      return ScaleTransition(
-                        scale: animation,
-                        child: child,
-                      );
-                    },
-                    duration: Duration(milliseconds: 250),
-                    child: pos == 3
-                        ? Text('Profile',
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18))
-                        : Icon(Icons.account_circle),
-                  )),
-            ),
-          ],
-        ),
+      bottomNavigationBar: FancyBottomBar(
+        items: [
+          FancyItem(
+            textColor: Colors.orange,
+            title: 'Home',
+            icon: Icon(Icons.home),
+          ),
+          FancyItem(
+            textColor: Colors.red,
+            title: 'Trending',
+            icon: Icon(Icons.trending_up),
+          ),
+          FancyItem(
+            textColor: Colors.green,
+            title: 'Search',
+            icon: Icon(Icons.search),
+          ),
+          FancyItem(
+            textColor: Colors.brown,
+            title: 'Settings',
+            icon: Icon(Icons.settings),
+          ),
+        ],
+        onItemSelected: (index) {
+          print(index);
+        },
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
